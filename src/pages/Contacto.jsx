@@ -1,7 +1,7 @@
 // src/pages/Contacto.jsx
 
 import React from "react";
-
+import ContactQR from "../components/ContactQR";
 // Información de Contacto
 const contactInfo = {
   phone: "+52 1 241 158 9721",
@@ -71,7 +71,7 @@ function Contacto() {
               <p className="info-label">Oficinas</p>
               <p className="info-detail">{contactInfo.address}</p>
             </div>
-
+            <ContactQR />
             {/* Mapa de Ejemplo (se ve más profesional que solo la dirección) */}
             <div className="map-placeholder">
               {/* Aquí se integraría un iframe de Google Maps si tuvieras la dirección exacta */}
