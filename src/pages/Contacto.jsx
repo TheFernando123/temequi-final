@@ -2,14 +2,21 @@
 
 import React from "react";
 import ContactQR from "../components/ContactQR";
+
 // Información de Contacto
 const contactInfo = {
   phone: "+52 1 241 158 9721",
-  email: "contacto@tequimearq.com", // Email de ejemplo
-  address: "Av. Principal 123, Ciudad de México, México", // Dirección de ejemplo
+  email: "contacto@tequimearq.com",
+  address: "Av. Principal 123, Ciudad de México, México",
 };
 
 function Contacto() {
+  const handleFormSubmit = (e) => {
+    // Usamos un pequeño delay para que Formspree alcance a capturar los datos antes de limpiar
+    setTimeout(() => {
+      e.target.reset();
+    }, 100);
+  };
   return (
     <div className="contact-page">
       <div className="container">
@@ -23,16 +30,33 @@ function Contacto() {
           {/* LADO IZQUIERDO: FORMULARIO */}
           <div className="contact-form-section">
             <h2>Envíanos un Mensaje</h2>
-            <form className="contact-form">
-              <input type="text" placeholder="Nombre completo" required />
-              <input type="email" placeholder="Correo electrónico" required />
-              <input type="tel" placeholder="Teléfono" />
+            {/* INTEGRACIÓN DE FORMSPREE AQUÍ */}
+            <form
+              className="contact-form"
+              action="https://formspree.io/f/mojprqlv"
+              method="POST"
+              onSubmit={handleFormSubmit}
+            >
+              <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre completo"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Correo electrónico"
+                required
+              />
+              <input type="tel" name="telefono" placeholder="Teléfono" />
               <textarea
+                name="mensaje"
                 placeholder="Describe tu proyecto..."
                 rows="5"
                 required
               ></textarea>
-              {/* Usamos el color de acento Dorado para el botón de enviar */}
+
               <button type="submit" className="submit-button">
                 Enviar Mensaje
               </button>
@@ -43,11 +67,9 @@ function Contacto() {
           <div className="contact-info-section">
             <h2>Información Clave</h2>
 
-            {/* Teléfono Destacado */}
             <div className="info-box phone-box">
               <span className="info-icon">📞</span>
               <p className="info-label">Llama Hoy Mismo</p>
-              {/* Hacemos que el número sea clicable */}
               <a
                 href={`tel:${contactInfo.phone.replace(/ /g, "")}`}
                 className="info-detail phone-number"
@@ -56,7 +78,6 @@ function Contacto() {
               </a>
             </div>
 
-            {/* Email */}
             <div className="info-box">
               <span className="info-icon">✉️</span>
               <p className="info-label">E-mail</p>
@@ -65,16 +86,15 @@ function Contacto() {
               </a>
             </div>
 
-            {/* Dirección (Mapa de Google Maps de ejemplo) */}
             <div className="info-box">
               <span className="info-icon">📍</span>
               <p className="info-label">Oficinas</p>
               <p className="info-detail">{contactInfo.address}</p>
             </div>
+
             <ContactQR />
-            {/* Mapa de Ejemplo (se ve más profesional que solo la dirección) */}
+
             <div className="map-placeholder">
-              {/* Aquí se integraría un iframe de Google Maps si tuvieras la dirección exacta */}
               <p>Ubicación de nuestras oficinas</p>
             </div>
           </div>

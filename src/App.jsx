@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Portafolio from "./pages/Portafolio"; // NUEVA PÁGINA
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
+import TequimeBot from "./components/Tequimebot";
 
 function App() {
   return (
@@ -24,8 +25,10 @@ function App() {
             <Route path="/portafolio" element={<Portafolio />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/contacto" element={<Contacto />} />
+
             {/* Puedes añadir más rutas aquí: /servicios, /contacto, etc. */}
           </Routes>
+          <TequimeBot /> {/* Bot de chat siempre disponible */}
         </main>
         <Footer />
       </div>
