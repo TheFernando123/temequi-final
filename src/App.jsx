@@ -29,8 +29,6 @@ function App() {
             {/* Puedes añadir más rutas aquí: /servicios, /contacto, etc. */}
           </Routes>
           <TequimeBot /> {/* Bot de chat siempre disponible */}
-          // Aquí puedes añadir un componente de chat o cualquier otro elemento
-          que quieras que esté presente en todas las páginas
         </main>
         <Footer />
       </div>
