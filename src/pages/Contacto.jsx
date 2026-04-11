@@ -33,7 +33,9 @@ function Contacto() {
             {/* INTEGRACIÓN DE FORMSPREE AQUÍ */}
             <form
               className="contact-form"
-              action="https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}"
+              action={
+                "https://formspree.io/f/" + import.meta.env.VITE_FORMSPREE_ID
+              }
               method="POST"
               onSubmit={handleFormSubmit}
             >
