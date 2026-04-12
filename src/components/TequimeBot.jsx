@@ -78,7 +78,7 @@ const TequimeBot = () => {
       setMensajes((prev) => [
         ...prev,
         {
-          text: "Mi servidor está en mantenimiento, por favor contáctanos vía telefónica.",
+          text: "Mi servidor está en mantenimiento, por favor contáctanos vía electrónica.",
           isBot: true,
         },
       ]);
