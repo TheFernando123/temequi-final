@@ -6,14 +6,13 @@ const TequimeBot = () => {
   const [input, setInput] = useState("");
   const [mensajes, setMensajes] = useState([
     {
-      text: "¡Hola! 👋 Soy el asistente de Temequi Arquitectura. ¿En qué te puedo ayudar hoy?",
+      text: "¡Hola! 👋 Soy el asistente de Tequime. ¿En qué te puedo ayudar hoy?",
       isBot: true,
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll para que la vista baje sola cuando haya mensajes nuevos
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -21,6 +20,33 @@ const TequimeBot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [mensajes, isLoading]);
+
+  // FUNCION MÁGICA: Detecta links y los hace clickeables
+  const renderMessage = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+
+    return parts.map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#a0885c",
+              fontWeight: "bold",
+              textDecoration: "underline",
+            }}
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
 
   const enviarMensaje = async (e) => {
     e.preventDefault();
@@ -32,7 +58,6 @@ const TequimeBot = () => {
     setIsLoading(true);
 
     try {
-      // Hacemos la llamada al backend que creaste en Vercel
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -79,7 +104,7 @@ const TequimeBot = () => {
                 key={index}
                 style={msg.isBot ? styles.msgBot : styles.msgUser}
               >
-                {msg.text}
+                {renderMessage(msg.text)}
               </div>
             ))}
             {isLoading && <div style={styles.msgBot}>Pensando... ✍️</div>}
@@ -106,7 +131,6 @@ const TequimeBot = () => {
         {isOpen ? "✕" : "💬"}
       </button>
 
-      {/* Animación Simple */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
@@ -117,7 +141,7 @@ const TequimeBot = () => {
   );
 };
 
-// --- ESTILOS (Paleta Tequime conservada) ---
+// ESTILOS
 const dorado = "#a0885c";
 const negro = "#1a1a1a";
 
@@ -176,6 +200,7 @@ const styles = {
     color: "#333",
     lineHeight: "1.4",
     alignSelf: "flex-start",
+    wordBreak: "break-word",
   },
   msgUser: {
     backgroundColor: dorado,
