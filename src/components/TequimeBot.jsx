@@ -6,7 +6,7 @@ const TequimeBot = () => {
   const [input, setInput] = useState("");
   const [mensajes, setMensajes] = useState([
     {
-      text: "¡Hola! 👋 Soy el asistente de Tequime Arquitectura. ¿En qué te puedo ayudar hoy?",
+      text: "¡Hola! 👋 Soy el asistente de Temequi Arquitectura. ¿En qué te puedo ayudar hoy?",
       isBot: true,
     },
   ]);
