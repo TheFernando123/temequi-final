@@ -1,20 +1,71 @@
-import React, { useState } from "react";
+// src/components/TequimeBot.jsx
+import React, { useState, useRef, useEffect } from "react";
 
 const TequimeBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [paso, setPaso] = useState("inicio");
+  const [input, setInput] = useState("");
+  const [mensajes, setMensajes] = useState([
+    {
+      text: "¡Hola! 👋 Soy el asistente de Tequime Arquitectura. ¿En qué te puedo ayudar hoy?",
+      isBot: true,
+    },
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
 
-  // Función para cambiar de respuesta
-  const responder = (nuevoPaso) => {
-    setPaso(nuevoPaso);
+  // Auto-scroll para que la vista baje sola cuando haya mensajes nuevos
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [mensajes, isLoading]);
+
+  const enviarMensaje = async (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMsg = input;
+    setMensajes((prev) => [...prev, { text: userMsg, isBot: false }]);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      // Hacemos la llamada al backend que creaste en Vercel
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMsg }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMensajes((prev) => [...prev, { text: data.reply, isBot: true }]);
+      } else {
+        setMensajes((prev) => [
+          ...prev,
+          { text: "Hubo un error de conexión. Intenta de nuevo.", isBot: true },
+        ]);
+      }
+    } catch {
+      setMensajes((prev) => [
+        ...prev,
+        {
+          text: "Mi servidor está en mantenimiento, por favor contáctanos vía telefónica.",
+          isBot: true,
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div style={styles.floatingContainer}>
-      {/* VENTANA DE CHAT */}
       {isOpen && (
         <div style={styles.chatWindow}>
-          {/* Cabecera */}
           <div style={styles.header}>
             <span>Tequime Bot</span>
             <button onClick={() => setIsOpen(false)} style={styles.closeBtn}>
@@ -22,108 +73,35 @@ const TequimeBot = () => {
             </button>
           </div>
 
-          {/* Cuerpo de Mensajes */}
           <div style={styles.chatBody}>
-            {/* Mensaje de Bienvenida (Siempre visible) */}
-            <div style={styles.msgBot}>
-              ¡Hola! 👋 Soy el asistente de{" "}
-              <strong>Tequime Arquitectura</strong>. ¿Cómo puedo ayudarte hoy?
-            </div>
-
-            {/* LÓGICA DE PASOS */}
-            {paso === "inicio" && (
-              <div style={styles.containerOpciones}>
-                <button
-                  onClick={() => responder("servicios")}
-                  style={styles.btnOpcion}
-                >
-                  🏗️ Ver Servicios
-                </button>
-                <button
-                  onClick={() => responder("autores")}
-                  style={styles.btnOpcion}
-                >
-                  👷 ¿Quiénes somos?
-                </button>
-                <button
-                  onClick={() => responder("presupuesto")}
-                  style={styles.btnOpcion}
-                >
-                  💰 Pedir Presupuesto
-                </button>
+            {mensajes.map((msg, index) => (
+              <div
+                key={index}
+                style={msg.isBot ? styles.msgBot : styles.msgUser}
+              >
+                {msg.text}
               </div>
-            )}
-
-            {paso === "servicios" && (
-              <>
-                <div style={styles.msgBot}>
-                  Ofrecemos <strong>Diseño Residencial</strong>,{" "}
-                  <strong>Remodelación</strong> y{" "}
-                  <strong>Arquitectura Sostenible</strong>. ¿Quieres ver el
-                  portafolio?
-                </div>
-                <div style={styles.containerOpciones}>
-                  <button
-                    onClick={() => (window.location.href = "/portafolio")}
-                    style={styles.btnOpcion}
-                  >
-                    📂 Ir al Portafolio
-                  </button>
-                  <button
-                    onClick={() => responder("inicio")}
-                    style={styles.btnVolver}
-                  >
-                    ⬅️ Volver
-                  </button>
-                </div>
-              </>
-            )}
-
-            {paso === "autores" && (
-              <>
-                <div style={styles.msgBot}>
-                  Somos un despacho liderado por expertos apasionados por
-                  transformar ideas en espacios funcionales y estéticos.
-                </div>
-                <div style={styles.containerOpciones}>
-                  <button
-                    onClick={() => responder("inicio")}
-                    style={styles.btnVolver}
-                  >
-                    ⬅️ Volver
-                  </button>
-                </div>
-              </>
-            )}
-
-            {paso === "presupuesto" && (
-              <>
-                <div style={styles.msgBot}>
-                  ¡Excelente! Puedes enviarnos un mensaje directo en la sección
-                  de <strong>Contacto</strong> o llamarnos al número que aparece
-                  en pantalla.
-                </div>
-                <div style={styles.containerOpciones}>
-                  <button
-                    onClick={() => (window.location.href = "/contacto")}
-                    style={styles.btnOpcion}
-                  >
-                    ✉️ Ir a Contacto
-                  </button>
-                  <button
-                    onClick={() => responder("inicio")}
-                    style={styles.btnVolver}
-                  >
-                    ⬅️ Volver
-                  </button>
-                </div>
-              </>
-            )}
+            ))}
+            {isLoading && <div style={styles.msgBot}>Pensando... ✍️</div>}
+            <div ref={messagesEndRef} />
           </div>
+
+          <form onSubmit={enviarMensaje} style={styles.inputForm}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Escribe tu mensaje..."
+              style={styles.inputField}
+              disabled={isLoading}
+            />
+            <button type="submit" style={styles.sendBtn} disabled={isLoading}>
+              ➤
+            </button>
+          </form>
         </div>
       )}
 
-      {/* BOTÓN BURBUJA */}
       <button onClick={() => setIsOpen(!isOpen)} style={styles.bubble}>
         {isOpen ? "✕" : "💬"}
       </button>
@@ -139,7 +117,7 @@ const TequimeBot = () => {
   );
 };
 
-// --- ESTILOS (Sigue la paleta de colores de Temequi) ---
+// --- ESTILOS (Paleta Tequime conservada) ---
 const dorado = "#a0885c";
 const negro = "#1a1a1a";
 
@@ -153,7 +131,7 @@ const styles = {
   },
   chatWindow: {
     width: "320px",
-    height: "420px",
+    height: "450px",
     backgroundColor: "white",
     borderRadius: "20px",
     boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
@@ -185,44 +163,58 @@ const styles = {
     padding: "20px",
     overflowY: "auto",
     backgroundColor: "#fdfdfd",
+    display: "flex",
+    flexDirection: "column",
   },
   msgBot: {
     backgroundColor: "#e9e9eb",
     padding: "12px",
     borderRadius: "15px 15px 15px 0",
     marginBottom: "10px",
-    maxWidth: "90%",
+    maxWidth: "85%",
     fontSize: "14px",
     color: "#333",
     lineHeight: "1.4",
-  },
-  containerOpciones: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px",
-    marginTop: "10px",
-  },
-  btnOpcion: {
-    backgroundColor: "white",
-    border: `1px solid ${dorado}`,
-    color: negro,
-    padding: "10px 15px",
-    borderRadius: "12px",
-    cursor: "pointer",
-    textAlign: "left",
-    fontSize: "13px",
-    transition: "0.2s ease",
-    outline: "none",
-  },
-  btnVolver: {
-    backgroundColor: "#eee",
-    border: "none",
-    padding: "6px 12px",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontSize: "12px",
     alignSelf: "flex-start",
-    marginTop: "5px",
+  },
+  msgUser: {
+    backgroundColor: dorado,
+    padding: "12px",
+    borderRadius: "15px 15px 0 15px",
+    marginBottom: "10px",
+    maxWidth: "85%",
+    fontSize: "14px",
+    color: "white",
+    lineHeight: "1.4",
+    alignSelf: "flex-end",
+  },
+  inputForm: {
+    display: "flex",
+    borderTop: "1px solid #eee",
+    padding: "10px",
+    backgroundColor: "white",
+  },
+  inputField: {
+    flex: 1,
+    padding: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "20px",
+    outline: "none",
+    fontSize: "14px",
+  },
+  sendBtn: {
+    backgroundColor: negro,
+    color: dorado,
+    border: "none",
+    borderRadius: "50%",
+    width: "40px",
+    height: "40px",
+    marginLeft: "10px",
+    cursor: "pointer",
+    fontSize: "16px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   bubble: {
     width: "65px",
