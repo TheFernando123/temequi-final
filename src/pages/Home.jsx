@@ -40,9 +40,9 @@ function Home() {
         <div className="hero-overlay"></div>
         <div className="hero-content fade-up-1">
           <h1>
-            Diseñando el Futuro,
+            Materializa
             <br />
-            <span className="resaltado-dorado">Construyendo Sueños.</span>
+            <span className="resaltado-dorado">Tus Sueños.</span>
           </h1>
           <p className="hero-subtitle">
             Expertos en arquitectura habitacional, residencial y comercial.
