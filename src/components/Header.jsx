@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 // IMPORTACIÓN DEL LOGO (Verifica la ruta si la carpeta assets está en otro lugar)
-import LogoImage from "../assets/LOGO TRANSPARENTE.png";
+import LogoImage from "../assets/LOGO COSTADO.png";
 
 const navLinks = [
   { name: "Inicio", href: "/" },

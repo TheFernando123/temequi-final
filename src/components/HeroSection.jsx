@@ -7,10 +7,10 @@ function HeroSection() {
     <section className="hero-section">
       <div className="hero-content">
         {/* Aquí irá el texto principal */}
-        <h1>Diseñando el Futuro, Construyendo Sueños.</h1>
-        <p>Expertos en arquitectura residencial y diseño sostenible.</p>
+        <h1>Materializa tus sueños.</h1>
+        <p>Expertos en arquitectura habitacional, residencial y comercial.</p>
         <a href="/portafolio" className="hero-cta-button">
-          Ver Nuestro Portafolio
+          Servicios
         </a>
       </div>
 

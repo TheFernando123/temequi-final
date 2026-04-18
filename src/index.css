@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
+
+/* ==================================== */
+/* 0. VARIABLES GLOBALES (PALETA TEMEQUI) */
+/* ==================================== */
+:root {
+  --color-negro: #000000;
+  --color-dorado: #cbaa4e;
+  --color-beige: #f5efe6;
+  --color-gris: #544e4a;
+  --fuente-principal: "Montserrat", sans-serif;
+}
+
 /* ==================================== */
 /* 1. RESET Y ESTILOS GLOBALES */
 /* ==================================== */
@@ -5,9 +18,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Arial", sans-serif;
-  background-color: #f5f5f5; /* Fondo ligeramente gris */
-  color: #333333;
+  font-family: var(--fuente-principal);
+  background-color: var(--color-beige); /* Fondo elegante Temequi */
+  color: var(--color-negro);
 }
 
 .container {
@@ -33,57 +46,57 @@ a {
   z-index: 1000;
 }
 
-/* BUSCA ESTO (Línea 43 aprox.) */
 .header .container {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* <<< VERIFICA QUE ESTA LÍNEA ESTÉ ASÍ */
+  align-items: center;
   padding: 15px 20px;
 }
 
 /* Estilos del Logo - TAMAÑO AUMENTADO */
 .header-logo-img {
-  height: 60px; /* Tamaño del logo ajustado */
+  height: 60px;
   width: auto;
   display: block;
 }
 
-/* BUSCA ESTO (Línea 54 aprox.) */
 .nav-menu ul {
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
-  align-items: center; /* <<< AGREGA ESTA LÍNEA AQUÍ */
+  align-items: center;
 }
 
 .nav-menu li a {
-  color: #555;
-  font-weight: 500;
+  color: var(--color-gris);
+  font-weight: 600;
   margin-left: 25px;
   transition: color 0.3s;
 }
 
 .nav-menu li a:hover {
-  color: #a0885c; /* COLOR DE ACENTO: Dorado/Bronce */
+  color: var(--color-dorado); /* COLOR DE ACENTO OFICIAL */
 }
 
 /* Botón CTA (Llamada a la Acción) */
-/* BUSCA ESTO (Línea 70 aprox.) */
 .cta-button {
-  background-color: #333333;
-  color: white;
-  padding: 10px 20px; /* <<< AJUSTA EL PADDING (Dales aire pero no demasiado) */
+  background-color: var(--color-negro);
+  color: var(--color-beige);
+  padding: 10px 20px;
   margin-left: 25px;
-  margin-top: 0; /* <<< AGREGA ESTO PARA ASEGURAR QUE NO TENGA MARGEN ARRIBA */
+  margin-top: 0;
   border-radius: 4px;
   font-weight: 600;
-  display: inline-block; /* <<< AGREGA ESTO */
-  transition: background-color 0.3s;
+  display: inline-block;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .cta-button:hover {
-  background-color: #555555;
+  background-color: var(--color-dorado);
+  color: var(--color-negro);
 }
 
 /* Menú Móvil */
@@ -93,6 +106,7 @@ a {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  color: var(--color-negro);
 }
 
 @media (max-width: 768px) {
@@ -153,7 +167,6 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Imagen de ejemplo. RECUERDA: puedes cambiar esta URL */
   background-image: url("https://picsum.photos/id/190/1600/900");
   background-size: cover;
   background-position: center;
@@ -171,7 +184,7 @@ a {
 }
 
 .hero-content {
-  color: white;
+  color: white; /* Se mantiene blanco por contraste con la imagen de fondo */
   z-index: 3;
   max-width: 800px;
   padding: 20px;
@@ -189,17 +202,17 @@ a {
 }
 
 .hero-cta-button {
-  background-color: #a0885c; /* COLOR DE ACENTO: Dorado/Bronce */
-  color: white;
+  background-color: var(--color-dorado);
+  color: var(--color-negro);
   padding: 12px 30px;
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .hero-cta-button:hover {
-  background-color: #8c774e;
+  background-color: var(--color-beige);
 }
 
 /* ==================================== */
@@ -207,8 +220,8 @@ a {
 /* ==================================== */
 
 .footer-section {
-  background-color: #222222; /* COLOR DE MARCA: Fondo Oscuro */
-  color: #f5f5f5;
+  background-color: var(--color-negro);
+  color: var(--color-beige);
   padding: 30px 20px;
   text-align: center;
 }
@@ -217,8 +230,11 @@ a {
   font-size: 1.5rem;
 }
 .footer-section a {
-  color: #a0885c; /* Enlaces en color dorado */
+  color: var(--color-dorado);
   margin: 0 10px;
+}
+.footer-section a:hover {
+  color: var(--color-beige);
 }
 
 /* ==================================== */
@@ -234,6 +250,7 @@ a {
 .featured-projects h2 {
   font-size: 2rem;
   margin-bottom: 40px;
+  color: var(--color-dorado);
 }
 
 .project-grid {
@@ -245,10 +262,12 @@ a {
 .project-card {
   overflow: hidden;
   border-radius: 8px;
+  background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.3s,
     box-shadow 0.3s;
+  border-bottom: 4px solid var(--color-dorado);
 }
 
 .project-card:hover {
@@ -268,23 +287,35 @@ a {
   text-align: left;
 }
 
+.project-info h3 {
+  color: var(--color-negro);
+}
+
+.project-info p {
+  color: var(--color-gris);
+}
+
 .view-details {
   display: inline-block;
   margin-top: 10px;
-  color: #a0885c; /* COLOR DE ACENTO */
+  color: var(--color-dorado);
   font-weight: 600;
 }
+.view-details:hover {
+  color: var(--color-negro);
+}
+
 .page-title {
   font-size: 3rem;
   margin-top: 50px;
   margin-bottom: 10px;
   text-align: center;
-  color: #333333;
+  color: var(--color-negro);
 }
 
 .page-subtitle {
   font-size: 1.1rem;
-  color: #666;
+  color: var(--color-gris);
   margin-bottom: 40px;
   text-align: center;
 }
@@ -292,45 +323,45 @@ a {
 /* --- Controles de Filtrado --- */
 .filter-controls {
   display: flex;
-  flex-wrap: wrap; /* Para que se ajusten en móvil */
+  flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
   margin-bottom: 50px;
 }
 
 .filter-button {
-  background-color: #f0f0f0;
-  color: #555;
+  background-color: #ffffff;
+  color: var(--color-gris);
   padding: 10px 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.3s;
 }
 
 .filter-button:hover {
-  background-color: #e0e0e0;
+  background-color: var(--color-beige);
 }
 
 .filter-button.active {
-  background-color: #a0885c; /* COLOR DE ACENTO: Dorado/Bronce */
-  color: white;
-  border-color: #a0885c;
-  font-weight: 600;
+  background-color: var(--color-dorado);
+  color: var(--color-negro);
+  border-color: var(--color-dorado);
+  font-weight: 700;
 }
 
 /* Estilos para el grid de proyectos en la página completa */
 .full-portfolio-grid {
   padding-bottom: 80px;
 }
+
 /* ==================================== */
 /* 7. ESTILOS DE LA PÁGINA SERVICIOS */
 /* ==================================== */
 
 .services-grid {
   display: grid;
-  /* 3 columnas en escritorio, responsive a 2 o 1 en móvil */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
   padding-bottom: 80px;
@@ -345,46 +376,49 @@ a {
   transition:
     transform 0.3s,
     box-shadow 0.3s;
-  border-top: 5px solid transparent; /* Línea para el hover */
+  border-top: 5px solid transparent;
 }
 
 .service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  border-top-color: #a0885c; /* COLOR DE ACENTO: Dorado/Bronce en hover */
+  border-top-color: var(--color-dorado);
 }
 
 .service-icon {
   font-size: 3rem;
   margin-bottom: 15px;
-  color: #a0885c; /* Ícono en color dorado/bronce */
+  color: var(--color-dorado);
 }
 
 .service-card h3 {
   font-size: 1.4rem;
-  color: #333333;
+  color: var(--color-negro);
   margin-top: 0;
 }
 
 .service-card p {
-  color: #666;
+  color: var(--color-gris);
   font-size: 1rem;
-  min-height: 80px; /* Para mantener la altura uniforme */
+  min-height: 80px;
 }
 
 .service-cta {
   display: inline-block;
   margin-top: 15px;
-  color: #a0885c; /* Botón de acción en color dorado */
+  color: var(--color-dorado);
   font-weight: 600;
 }
+.service-cta:hover {
+  color: var(--color-negro);
+}
+
 /* ==================================== */
 /* 8. ESTILOS DE LA PÁGINA CONTACTO */
 /* ==================================== */
 
 .contact-layout {
   display: grid;
-  /* Dos columnas en escritorio */
   grid-template-columns: 2fr 1fr;
   gap: 50px;
   padding-bottom: 80px;
@@ -394,7 +428,7 @@ a {
 
 .contact-form h2,
 .contact-info-section h2 {
-  color: #333333;
+  color: var(--color-negro);
   font-size: 1.8rem;
   margin-bottom: 30px;
 }
@@ -406,7 +440,7 @@ a {
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  box-sizing: border-box; /* Importante para el padding */
+  box-sizing: border-box;
   font-family: inherit;
   font-size: 1rem;
 }
@@ -416,20 +450,21 @@ a {
 }
 
 .submit-button {
-  background-color: #a0885c; /* COLOR DE ACENTO: Dorado */
-  color: white;
+  background-color: var(--color-dorado);
+  color: var(--color-negro);
   padding: 15px 30px;
   border: none;
   border-radius: 4px;
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%; /* Botón de ancho completo */
+  transition: all 0.3s;
+  width: 100%;
 }
 
 .submit-button:hover {
-  background-color: #8c774e;
+  background-color: var(--color-negro);
+  color: var(--color-dorado);
 }
 
 /* --- Estilos de la Información de Contacto (Llamativo) --- */
@@ -437,7 +472,7 @@ a {
 .info-box {
   margin-bottom: 25px;
   padding: 15px;
-  border-left: 5px solid #a0885c; /* Línea dorada para destacar */
+  border-left: 5px solid var(--color-dorado);
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
@@ -446,30 +481,31 @@ a {
   font-size: 1.5rem;
   display: block;
   margin-bottom: 5px;
+  color: var(--color-dorado);
 }
 
 .info-label {
   font-weight: 600;
-  color: #555;
+  color: var(--color-gris);
   margin: 0;
 }
 
 .info-detail {
   font-size: 1.1rem;
-  color: #333;
+  color: var(--color-negro);
   display: block;
   margin-top: 5px;
 }
 
 /* Estilo especial para el número de teléfono */
 .phone-box {
-  background-color: #a0885c; /* Fondo dorado para llamar la atención */
-  border-left-color: #333; /* Contraste */
+  background-color: var(--color-dorado);
+  border-left-color: var(--color-negro);
 }
 .phone-number {
   font-size: 1.5rem;
   font-weight: 800;
-  color: white; /* Texto blanco en fondo dorado */
+  color: var(--color-negro);
   letter-spacing: 1px;
 }
 
@@ -481,7 +517,7 @@ a {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #555;
+  color: var(--color-gris);
   margin-top: 20px;
   border-radius: 4px;
 }
@@ -489,7 +525,6 @@ a {
 /* Media Query para móvil */
 @media (max-width: 900px) {
   .contact-layout {
-    /* Una sola columna en móvil */
     grid-template-columns: 1fr;
   }
 }

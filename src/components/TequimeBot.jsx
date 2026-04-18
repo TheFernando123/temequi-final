@@ -142,8 +142,9 @@ const TequimeBot = () => {
 };
 
 // ESTILOS
-const dorado = "#a0885c";
-const negro = "#1a1a1a";
+const dorado = "#CBAA4E";
+const negro = "#000000";
+const beige = "#F5EFE6";
 
 const styles = {
   floatingContainer: {
@@ -186,7 +187,7 @@ const styles = {
     flex: 1,
     padding: "20px",
     overflowY: "auto",
-    backgroundColor: "#fdfdfd",
+    backgroundColor: beige,
     display: "flex",
     flexDirection: "column",
   },
@@ -215,9 +216,9 @@ const styles = {
   },
   inputForm: {
     display: "flex",
-    borderTop: "1px solid #eee",
+    borderTop: "1px solid #ddd",
     padding: "10px",
-    backgroundColor: "white",
+    backgroundColor: beige,
   },
   inputField: {
     flex: 1,

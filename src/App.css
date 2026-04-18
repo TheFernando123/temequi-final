@@ -1,3 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
+
+:root {
+  --color-negro: #000000;
+  --color-dorado: #cbaa4e;
+  --color-beige: #f5efe6;
+  --color-gris: #544e4a;
+  --fuente-principal: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-beige); /* Fondo elegante que te pidieron */
+  color: var(--color-negro);
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;

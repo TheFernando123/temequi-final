@@ -5,13 +5,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Componentes de Layout
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import TequimeBot from "./components/TequimeBot";
+import TequimeBot from "./components/Tequimebot";
 
 // Páginas
 import Home from "./pages/Home";
 import Portafolio from "./pages/Portafolio"; // NUEVA PÁGINA
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
+import Nosotros from "./pages/Nosotros"; // NUEVA PÁGINA
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/portafolio" element={<Portafolio />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/nosotros" element={<Nosotros />} />
 
             {/* Puedes añadir más rutas aquí: /servicios, /contacto, etc. */}
           </Routes>
