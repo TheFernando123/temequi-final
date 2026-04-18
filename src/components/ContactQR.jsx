@@ -1,6 +1,6 @@
 import React from "react";
 import { QRCodeSVG } from "qrcode.react";
-import logo from "../assets/LOGO TRANSPARENTE.png"; // Asegúrate de la ruta
+import logo from "../assets/LOGO COSTADO.png"; // Asegúrate de la ruta
 
 function ContactQR() {
   const websiteUrl = "https://temequi-final.vercel.app";
