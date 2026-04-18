@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Componentes de Layout
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import TequimeBot from "./components/Tequimebot";
+import TequimeBot from "./components/TequimeBot";
 
 // Páginas
 import Home from "./pages/Home";
