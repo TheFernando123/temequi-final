@@ -178,6 +178,19 @@ function Servicios() {
         .fade-up-2 { opacity: 0; transform: translateY(30px); animation: fadeUp 1s ease-out 0.4s forwards; }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+      @media (max-width: 768px) {
+          .titulo-dorado { 
+            font-size: 2rem; /* Achicamos el título para que quepa la palabra ESPECIALIDADES */
+            letter-spacing: 1px; 
+          }
+          .page-subtitle { 
+            font-size: 1rem; 
+            padding: 0 10px;
+          }
+          .service-card-premium {
+            padding: 30px 20px; /* Reducimos un poco el padding interno en celular */
+          }
+        }
       `}</style>
     </section>
   );

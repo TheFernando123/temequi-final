@@ -33,13 +33,25 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Columna 3: Contacto Directo */}
+        {/* Columna 3: Contacto y Redes */}
         <div className="footer-contact">
           <h4>Contacto</h4>
           <p>📍 Estado de Tlaxcala, México</p>
           <p>
             ✉️ <a href="mailto:temequicm@gmail.com">temequicm@gmail.com</a>
           </p>
+
+          {/* NUEVA SECCIÓN DE INSTAGRAM */}
+          <div className="redes-sociales">
+            <a
+              href="https://www.instagram.com/temequi.arq?igsh=MXQwcGxzOHdhanF4MQ=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-instagram"
+            >
+              <span className="icono-ig">📸</span> Síguenos en Instagram
+            </a>
+          </div>
         </div>
       </div>
 
@@ -109,12 +121,7 @@ function Footer() {
         }
 
         /* ENLACES */
-        .footer-links-col ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
+        .footer-links-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-links-col li { margin-bottom: 15px; }
 
         .footer-links-col a, .footer-contact a {
@@ -130,7 +137,7 @@ function Footer() {
           transform: translateX(5px);
         }
 
-        /* CONTACTO */
+        /* CONTACTO Y REDES */
         .footer-contact p {
           color: #a0a0a0;
           margin-bottom: 15px;
@@ -140,7 +147,31 @@ function Footer() {
           gap: 12px;
         }
 
-        /* BARRA INFERIOR (LEGAL Y COPYRIGHT) */
+        .redes-sociales {
+          margin-top: 25px;
+        }
+
+        .btn-instagram {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          color: white !important;
+          padding: 10px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          font-size: 0.95rem;
+          transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .btn-instagram:hover {
+          transform: translateY(-3px) !important;
+          box-shadow: 0 10px 20px rgba(220, 39, 67, 0.4);
+        }
+
+        .icono-ig { font-size: 1.2rem; }
+
+        /* BARRA INFERIOR */
         .footer-bottom {
           max-width: 1200px;
           margin: 0 auto;
@@ -157,24 +188,20 @@ function Footer() {
           color: var(--color-dorado, #CBAA4E);
           text-decoration: none;
           font-size: 0.95rem;
-          transition: color 0.3s;
           font-weight: 600;
         }
 
         .footer-legal a:hover { color: var(--color-beige, #F5EFE6); }
         .separador { color: #555; margin: 0 15px; }
         
-        .copyright {
-          color: #777;
-          font-size: 0.9rem;
-          margin: 0;
-        }
+        .copyright { color: #777; font-size: 0.9rem; margin: 0; }
 
         @media (max-width: 768px) {
           .footer-container { text-align: center; }
           .footer-desc { margin: 0 auto; }
           .footer-bottom { flex-direction: column; text-align: center; }
           .footer-contact p { justify-content: center; }
+          .redes-sociales { display: flex; justify-content: center; }
         }
       `}</style>
     </footer>

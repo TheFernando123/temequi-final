@@ -304,6 +304,23 @@ function Portafolio() {
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @media (max-width: 768px) {
+          .titulo-dorado { 
+            font-size: 2.2rem; /* Tamaño perfecto para la palabra PORTAFOLIO */
+            letter-spacing: 1px; 
+          }
+          .filtros-container { 
+            gap: 10px; 
+          }
+          .filtro-btn { 
+            padding: 8px 16px; 
+            font-size: 0.85rem; 
+          }
+          .descripcion-categoria {
+            font-size: 1rem;
+            padding: 0 15px;
+          }
+        }
       `}</style>
     </section>
   );

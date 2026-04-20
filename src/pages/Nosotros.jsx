@@ -112,13 +112,13 @@ const Nosotros = () => {
             <div className="miembro-card">
               <div className="miembro-rol dorado">Fundadora / Arquitectura</div>
               <h3 className="miembro-nombre">
-                Arq. Andrea Yoselin Cruz Del Valle
+                Arq. Andrea Yoseline Cruz Del Valle
               </h3>
             </div>
             <div className="miembro-card">
               <div className="miembro-rol dorado">Fundador / Arquitectura</div>
               <h3 className="miembro-nombre">
-                Arq. Hector Jesus Moreno Toscano
+                Arq. Hector Jesus Moreno Toscuento
               </h3>
             </div>
             {/* Ingeniería */}
